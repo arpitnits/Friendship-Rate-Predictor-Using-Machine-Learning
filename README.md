@@ -12,3 +12,12 @@ Adjusted Mutual Information: 0.624\
 Silhouette Coefficient: 0.435
 
 <img src ="download.png">
+
+---------
+
+
+ *****Result Obtained After K-Means Clustering******
+ 
+ <img src ="wcss.png">
+ 
+ <img src ="knn_cluster.png">
