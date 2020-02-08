@@ -10,7 +10,7 @@ import matplotlib.pyplot as plt
 dataset=pd.read_excel('G:/Projects\Machine Learning/Lazarus/Project_Data.xlsx')
 #check=dataset.iloc[:, 13].values
 x=dataset.iloc[:, 1:14].values
-print(x)
+#print(x)
 
 #Getting rid of categorical data of region...
 category_Hot_Encoded=pd.get_dummies(x[:, 4])
@@ -18,20 +18,27 @@ x=np.append(x, category_Hot_Encoded, axis=1)
 print(x)
 x=np.delete(x, 4, 1)# This removes the region coulumm which in turn would be replaced by category_Hot_Encoded
 #x=pd.DataFrame(x) to view it as  a data frame
+
+
 #Getting rid of categorical data of Gender...
 category_Hot_Encoded=pd.get_dummies(x[:, 1])
 x=np.append(x, category_Hot_Encoded, axis=1)
 print(x)
 x=np.delete(x, 1, 1)# This removes the region coulumm which in turn would be replaced by category_Hot_Encoded
 #x=pd.DataFrame(x) to view it as  a data frame
+
 #Now we remove the female categorical data to avoid the categorical data trap
 x=np.delete(x, 15, 1)
 #x=pd.DataFrame(x)...just to visualize#Getting rid of categorical data of Gender...
+
+
 #Getting rid of categorical data of Goals...
 category_Hot_Encoded=pd.get_dummies(x[:, 4])
 x=np.append(x, category_Hot_Encoded, axis=1)
 print(x[1,: ])
 x=np.delete(x, 4, 1)# This removes the region coulumm which in turn would be replaced by category_Hot_Encoded
+
+
 #Getting rid of categorical data of Seats...
 category_Hot_Encoded=pd.get_dummies(x[:, 7])
 x=np.append(x, category_Hot_Encoded, axis=1)
@@ -57,17 +64,16 @@ for i in range(0, 325):
     
 tags = x[3].apply(pd.Series)
 tags = tags.rename(columns = lambda a : 'tag_' + str(a))
-
 x = pd.concat([x[:], tags[:]], axis=1)
 x=pd.DataFrame(x)
 x.rename(columns = {'tag_0':'Game'}, inplace = True)
 x.rename(columns = {'tag_1':'Musical'}, inplace = True)
 x.rename(columns = {'tag_2':'Gym'}, inplace = True)
 x.rename(columns = {'tag_3':'Others'}, inplace = True)
-
 #Delete column number 3(Hobbies) from the x...
 x=x.drop(labels=3, axis=1)# This removes the region coulumm which in turn would be replaced by category_Hot_Encoded
 x=x.drop(labels=5, axis=1)# This removes the friends coulumm
+
 
 #Music taste
 clist = ['M1','M2','M3','M4','M5','M6','M7','M8','Others']
@@ -98,8 +104,29 @@ x.rename(columns = {'tag_7':'M8'}, inplace = True)
 x.rename(columns = {'tag_8':'Others'}, inplace = True)
 x=x.drop(labels=8, axis=1)# This removes the Music coulumm
 
-#This drop is only temporary and needs to be removed as and when nasha is implemented...
-x=x.drop(labels=6, axis=1)# This removes the Nasha coulumm
+
+
+#Nasha
+clist = ['A','G','C','X','N']
+for i in range(0, 325):
+    list1 = x[6][i].split(', ')
+    list2 = [0, 0, 0, 0, 0]
+    for j in range(0, 5):
+        if clist[j] in list1:
+            list2[j] = 1    
+    x[6][i] = list2
+ 
+tags = x[6].apply(pd.Series)
+tags = tags.rename(columns = lambda a : 'tag_' + str(a))
+x = pd.concat([x[:], tags[:]], axis=1)
+x=pd.DataFrame(x)
+x.rename(columns = {'tag_0':'A'}, inplace = True)
+x.rename(columns = {'tag_1':'G'}, inplace = True)
+x.rename(columns = {'tag_2':'C'}, inplace = True)
+x.rename(columns = {'tag_3':'X'}, inplace = True)
+x.rename(columns = {'tag_4':'N'}, inplace = True)
+x=x.drop(labels=6, axis=1)#Dropping Nasha column
+
 x=x.drop(labels=2, axis=1)# This removes the Room coulumm
 
 
