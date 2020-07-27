@@ -1,4 +1,4 @@
-# Student-Clustering
+# Clustering Students to predict Rate of friendship
  
 ● This project Clusters the students into different groups on the basis of features fed to our model.</br>
 ● Features include Scholar_Id, Gender, Monthly Expenditure, Mother tongue, Hobbies, Ambitions, Music genres,
