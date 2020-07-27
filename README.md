@@ -1,4 +1,10 @@
 # Student-Clustering
+ --------------------------
+ 
+● This project Clusters the students into different groups on the basis of features fed to our model.</br>
+● Features include Scholar_Id, Gender, Monthly Expenditure, Mother tongue, Hobbies, Ambitions, Music genres,
+Addictions, etc.</br>
+● K- Means and DBSCAN Clustering techniques are used to cluster the students..</br>
 
  *****Result Obtained After DBSCAN****** 
 
